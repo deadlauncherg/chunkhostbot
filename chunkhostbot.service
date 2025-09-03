@@ -1,1 +1,17 @@
+[Unit]
+Description=ChunkHost VPS Bot
+After=network.target docker.service
+Requires=docker.service
 
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/chunkhostbot
+ExecStart=/usr/bin/python3 /root/chunkhostbot/bot.py
+Restart=always
+RestartSec=30
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="DOCKER_HOST=Chunk:///var/run/docker.sock" 
+
+[Install]
+WantedBy=multi-user.target
